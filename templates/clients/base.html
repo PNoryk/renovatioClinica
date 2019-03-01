@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base</title>
+</head>
+<body>
+
+<nav>
+    <ul class="menu">
+        <li><a class="menu__item" href="{% url 'getClients' %}">getClinics</a></li>
+        <li><a class="menu__item">getProfessions</a></li>
+        <li><a class="menu__item">getUsers</a></li>
+        <li><a class="menu__item">getSchedule</a></li>
+    </ul>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
