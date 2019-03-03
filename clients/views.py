@@ -1,18 +1,42 @@
-import requests
+import pprint
+
+from django import views
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
+from clients import dataRequests
+from clients.forms import UsersForm
+
 
 def homeView(request):
-    return HttpResponseRedirect(reverse(getClients))
+    return HttpResponseRedirect(reverse(clientsView))
 
 
-def getClients(request):
-    data = {"api_key": "3971c1a15e8449ef7c5e0486471c63cd"}
-    r = requests.post(r"https://app.rnova.org/api/public/getClinics", data=data)
+def clientsView(request):
+    clients = dataRequests.getClinics()
+    return render(request, "clients/clients.html", context={"clients": clients["data"]})
 
-    clients = r.json()['data']
 
-    return render(request, "clients/getClients.html", context={"clients": clients})
+def professionsView(request):
+    professions = dataRequests.getProfessions()
+    return render(request, "clients/professions.html", context={"professions": professions["data"]})
 
+
+def usersView(request, clinic_id, profession_id, role=""):
+    users = dataRequests.getUsers(clinic_id, profession_id, role)
+    return render(request, "clients/users-list.html", context={"users": users["data"]})
+
+
+class UsersFormView(views.generic.FormView):
+    form_class = UsersForm
+    template_name = "clients/users.html"
+
+    def form_valid(self, form):
+        pprint.pprint(form.cleaned_data)
+        clinic_id = form.cleaned_data["clinic_id"]
+        profession_id = form.cleaned_data["profession_id"]
+
+        self.success_url = r"list/{}/{}/".format(clinic_id, profession_id)
+
+        return super().form_valid(form)

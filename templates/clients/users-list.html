@@ -1,0 +1,35 @@
+{% extends "clients/base.html" %}
+
+{% block content %}
+
+    <table>
+        <caption>Users</caption>
+        <tr>
+            <th>id</th>
+            <th>avatar</th>
+            <th>name</th>
+            <th>birth_date</th>
+            <th>gender</th>
+            <th>document_number</th>
+            <th>document_date</th>
+            <th>phone</th>
+            <th>email</th>
+        </tr>
+
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.avatar }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.birth_date|date }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.document_number }}</td>
+                <td>{{ user.document_date }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}

@@ -1,17 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Base</title>
+
+    {% block styles %}
+        <link rel="stylesheet" href="{% static "clients/css/clients.css" %}"
+    {% endblock %}
 </head>
 <body>
 
 <nav>
     <ul class="menu">
-        <li><a class="menu__item" href="{% url 'getClients' %}">getClinics</a></li>
-        <li><a class="menu__item">getProfessions</a></li>
-        <li><a class="menu__item">getUsers</a></li>
-        <li><a class="menu__item">getSchedule</a></li>
+        <li><a class="menu__item" href="{% url 'getClients' %}">Clinics</a></li>
+        <li><a class="menu__item" href="{% url 'getProfessions' %}">Professions</a></li>
+        <li><a class="menu__item" href="{% url 'getUsers' %}">Users</a></li>
+        <li><a class="menu__item">Schedule</a></li>
     </ul>
 </nav>
 

@@ -1,8 +1,12 @@
 from django.urls import path
 
-from clients.views import homeView, getClients
+from clients.views import *
 
 urlpatterns = [
     path("", homeView, name="home"),
-    path("getClients/", getClients, name="getClients")
+    path("clients/", clientsView, name="getClients"),
+    path("professions/", professionsView, name="getProfessions"),
+    path("users/", UsersFormView.as_view(), name="getUsers"),
+    path("users/list/<int:clinic_id>/<int:profession_id>/", usersView, name="usersList"),
+
 ]
