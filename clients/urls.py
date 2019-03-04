@@ -8,5 +8,6 @@ urlpatterns = [
     path("professions/", professionsView, name="getProfessions"),
     path("users/", UsersFormView.as_view(), name="getUsers"),
     path("users/list/<int:clinic_id>/<int:profession_id>/", usersView, name="usersList"),
+    path("users/list/<int:clinic_id>/<int:profession_id>/<int:role>", usersView, name="usersList"),
 
 ]

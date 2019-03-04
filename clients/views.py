@@ -25,6 +25,7 @@ def professionsView(request):
 
 def usersView(request, clinic_id, profession_id, role=""):
     users = dataRequests.getUsers(clinic_id, profession_id, role)
+    pprint.pprint(users["data"])
     return render(request, "clients/users-list.html", context={"users": users["data"]})
 
 
@@ -33,10 +34,12 @@ class UsersFormView(views.generic.FormView):
     template_name = "clients/users.html"
 
     def form_valid(self, form):
-        pprint.pprint(form.cleaned_data)
         clinic_id = form.cleaned_data["clinic_id"]
         profession_id = form.cleaned_data["profession_id"]
-
         self.success_url = r"list/{}/{}/".format(clinic_id, profession_id)
+
+        role = form.cleaned_data["role"]
+        if role:
+            self.success_url += f"{role}/"
 
         return super().form_valid(form)
