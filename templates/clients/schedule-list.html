@@ -1,0 +1,27 @@
+{% extends "clients/base.html" %}
+
+{% block content %}
+
+    <table>
+        <caption>Schedule</caption>
+        <tr>
+            <th>user_id</th>
+            <th>clinic_id</th>
+            <th>time_start</th>
+            <th>time_end</th>
+        </tr>
+
+        {% for user_id, value in schedule.items %}
+            {% for item in value %}
+                <tr>
+                    <td>{{ user_id }}</td>
+                    <td>{{ item.clinic_id }}</td>
+                    <td>{{ item.time_start }}</td>
+                    <td>{{ item.time_end }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+
+
+{% endblock %}

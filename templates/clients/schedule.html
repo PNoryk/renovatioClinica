@@ -1,0 +1,15 @@
+{% extends "clients/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Select</button>
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static "clients/js/clients.js" %}"></script>
+{% endblock %}
