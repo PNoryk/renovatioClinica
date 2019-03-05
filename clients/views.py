@@ -1,5 +1,7 @@
+import pprint
+
 from django import views
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -13,16 +15,24 @@ def homeView(request):
 
 def clientsView(request):
     clients = dataRequests.getClinics()
+
+    if clients["error"]:
+        return render(request, "clients/error.html", context={"error": clients["data"]})
     return render(request, "clients/clients.html", context={"clients": clients["data"]})
 
 
 def professionsView(request):
     professions = dataRequests.getProfessions()
+    if professions["error"]:
+        return render(request, "clients/error.html", context={"error": professions["data"]})
     return render(request, "clients/professions.html", context={"professions": professions["data"]})
 
 
 def usersView(request, clinic_id, profession_id, role=""):
     users = dataRequests.getUsers(clinic_id, profession_id, role)
+    if users["error"]:
+        return render(request, "clients/error.html", context={"error": users["data"]})
+
     return render(request, "clients/users-list.html", context={"users": users["data"]})
 
 
@@ -60,4 +70,7 @@ class ScheduleFormView(views.generic.FormView):
 
 def scheduleView(request, clinic_id, user_id, time_start, time_end, step):
     schedule = dataRequests.getSchedule(clinic_id, user_id, time_start, time_end, step)
+    if schedule["error"]:
+        return render(request, "clients/error.html", context={"error": schedule["data"]})
+
     return render(request, "clients/schedule-list.html", context={"schedule": schedule["data"]})
