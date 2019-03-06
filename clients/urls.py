@@ -13,5 +13,5 @@ urlpatterns = [
 
     path("schedule/", ScheduleFormView.as_view(), name="getSchedule"),
     path("schedule/list/<int:clinic_id>/<int:user_id>/<slug:time_start>/<slug:time_end>/<int:step>/",
-         scheduleView, name="getSchedule"),
+         scheduleView, name="scheduleList"),
 ]

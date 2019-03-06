@@ -2,13 +2,13 @@
 
 {% block content %}
 
-    <table>
-        <caption>Schedule</caption>
+    <table class="table table-hover">
+        <caption>График приёма</caption>
         <tr>
-            <th>user_id</th>
-            <th>clinic_id</th>
-            <th>time_start</th>
-            <th>time_end</th>
+            <th>Сотрудник</th>
+            <th>Клиника</th>
+            <th>Дата начала</th>
+            <th>Дата окончания</th>
         </tr>
 
         {% for user_id, value in schedule.items %}

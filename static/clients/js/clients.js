@@ -18,7 +18,7 @@ function setUsersIdSelect(data) {
 
     if (data === undefined || data.length === 0) {
         element.html(
-            "<option value=''>NoUsers</option>"
+            "<option value=''>Нет Сотрудников</option>"
         );
         return
     }

@@ -18,7 +18,7 @@ def clientsView(request):
 
     if clients["error"]:
         return render(request, "clients/error.html", context={"error": clients["data"]})
-    return render(request, "clients/clients.html", context={"clients": clients["data"]})
+    return render(request, "clients/clinics.html", context={"clients": clients["data"]})
 
 
 def professionsView(request):

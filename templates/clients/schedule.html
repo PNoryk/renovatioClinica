@@ -1,15 +1,50 @@
 {% extends "clients/base.html" %}
-{% load static %}
+{% load static crispy_forms_tags %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static "clients/datepicker/datepicker.min.css" %}">
+{% endblock %}
 
 {% block content %}
 
-    <form method="post">
+    <form method="post" autocomplete="off">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Select</button>
+        <div class="form-row">
+            <div class="form-group col mb-0">
+                {{ form.clinic_id|as_crispy_field }}
+            </div>
+            <div class="form-group col mb-0">
+                {{ form.user_id|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col mb-0">
+                {{ form.time_start|as_crispy_field }}
+            </div>
+            <div class="form-group col mb-0">
+                {{ form.time_end|as_crispy_field }}
+            </div>
+            <div class="form-group col mb-0">
+                {{ form.step|as_crispy_field }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Найти</button>
     </form>
 {% endblock %}
 
 {% block js %}
     <script src="{% static "clients/js/clients.js" %}"></script>
+    <script src="{% static "clients/datepicker/datepicker.min.js" %}"></script>
+    <script>
+        $(function () {
+            $("#id_time_start").datepicker({
+                format: 'dd.mm.yyyy',
+                autoHide: true,
+            });
+            $("#id_time_end").datepicker({
+                format: 'dd.mm.yyyy',
+                autoHide: true,
+            });
+        });
+    </script>
 {% endblock %}

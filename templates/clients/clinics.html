@@ -1,0 +1,40 @@
+{% extends "clients/base.html" %}
+
+{% block content %}
+    <div class="table-responsive">
+        <table class="table-hover">
+            <caption>Клиники</caption>
+            <thead>
+            <tr>
+                <th>№ клиники</th>
+                <th>Название</th>
+                <th>ФИО главврача</th>
+                <th>№ лицензии</th>
+                <th>Дата выдачи лицензии</th>
+                <th>Телефон</th>
+                <th>Сайт</th>
+                <th>Email</th>
+                <th>Основной адрес</th>
+                <th>Фактический адрес</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td>{{ client.id }}</td>
+                    <td>{{ client.title }}</td>
+                    <td>{{ client.doctor_name }}</td>
+                    <td>{{ client.license_number }}</td>
+                    <td>{{ client.license_date }}</td>
+                    <td>{{ client.phone }}</td>
+                    <td>{{ client.site }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.address }}</td>
+                    <td>{{ client.real_address }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
