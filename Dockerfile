@@ -4,5 +4,5 @@ RUN mkdir /code
 WORKDIR /code
 COPY Pipfile.lock /code/
 RUN pip install pipenv
-RUN pipenv install Pipfile.lock
+RUN pipenv install
 COPY . /code/
